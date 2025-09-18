@@ -34,5 +34,8 @@ import { Component, input } from '@angular/core';
   styleUrl: './button.component.css'
 })
 export class ButtonComponent {
-  label = input.required<string>();
+  //=============== signal input property ===============
+  // Define a required input property 'label' of type string using Angular's signal system.
+  // label = input.required<string>();
+  
 }
