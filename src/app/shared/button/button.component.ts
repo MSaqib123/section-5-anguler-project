@@ -1,7 +1,34 @@
 import { Component, input } from '@angular/core';
 
 @Component({
-  selector: 'app-button',
+  //========== Element selector ==========
+  // Use this selector to apply the component as an attribute to a native HTML element.
+  // Example: <button app-button></button>
+  // selector: '[app-button]',
+  //selector: 'app-button',
+
+  //========== Attribute selector ==========
+  // Use this selector to apply the component as an attribute to a native HTML element.
+  // Example: <button appButton></button>
+  // selector: '[appButton]',
+
+  //========== Only button Attribute selector ==========
+  // Use this selector to apply the component only to <button> elements with the appButton attribute.
+  // Example: <button appButton></button>
+  // selector: 'button[appButton]',
+
+
+  //========== Class selector ==========
+  // Use this selector to apply the component to any HTML element with the app-button class.
+  // Example: <button class="app-button"></button>
+  // selector: '.appButton',
+
+  //========== only button Class selector ==========
+  // Use this selector to apply the component only to <button> elements with the app-button class.
+  // Example: <button class="app-button"></button>
+  selector: 'button.appButton',
+
+
   imports: [],
   templateUrl: './button.component.html',
   styleUrl: './button.component.css'
