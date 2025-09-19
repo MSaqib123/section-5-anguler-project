@@ -26,7 +26,13 @@ import { Component, input } from '@angular/core';
   //========== only button Class selector ==========
   // Use this selector to apply the component only to <button> elements with the app-button class.
   // Example: <button class="app-button"></button>
-  selector: 'button.appButton',
+  // selector: 'button.appButton',
+
+
+  //========== Multi Selector ==========
+  // Use this selector to apply the component to multiple types of HTML elements with the appButton attribute.
+  // Example: <button appButton></button>, <a appButton></a>, <input appButton>
+  selector: 'button[appButton], a[appButton], input[appButton]',
 
 
   imports: [],
