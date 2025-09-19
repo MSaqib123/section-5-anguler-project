@@ -5,7 +5,7 @@ import { Component, input, ViewEncapsulation } from '@angular/core';
   imports: [],
   templateUrl: './control.component.html',
   styleUrl: './control.component.css',
-  //======= remove scoped css global ========
+  //======= remove scoped css global =======
   encapsulation: ViewEncapsulation.None, // ViewEncapsulation.None
 })
 export class ControlComponent {
