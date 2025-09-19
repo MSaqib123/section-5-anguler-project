@@ -7,5 +7,23 @@ import { Component } from '@angular/core';
   styleUrl: './server-status.component.css'
 })
 export class ServerStatusComponent {
-  currentStatus = 'online';
+  // typo type or enum type
+  currentStatus:'online'|'offline'|'unknown' = 'online';
+
+  constructor () {
+    setInterval(() => {
+      const rnd = Math.random();
+
+      if(rnd < 0.5) {
+        this.currentStatus = 'online';
+        console.log('Online');
+      } else if (rnd < 0.9) {
+        this.currentStatus = 'offline';
+        console.log('Offline');
+      } else {
+        this.currentStatus = 'unknown';
+        console.log('Unknown');
+      }
+    }, 2000);
+  }
 }
