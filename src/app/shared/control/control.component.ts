@@ -1,4 +1,4 @@
-import { Component, HostBinding, HostListener, input, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener, inject, input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -38,9 +38,9 @@ export class ControlComponent {
   
   
   // 2. host : { '(click)': 'onClick()' } in @Component decorator
-  onClick() {
-     console.log('clicked'); 
-  }
+  // onClick() {
+  //    console.log('clicked'); 
+  // }
   // onMouseOver() { console.log('mouse over'); }
   // onMouseOut() { console.log('mouse out'); }
   // mostly we use host : { '(click)': 'onClick()' } in @Component decorator
@@ -49,5 +49,23 @@ export class ControlComponent {
   //#endregion
   //===================================
   
+//===================================
+  //#region 
+  // Note ======= Accessing Host Elements =======
+  // ElementRef is a service that gives us access to the host element
+  // we can use it to access the host element properties and methods
+  // but we should be careful when using it because it can make our app vulnerable to XSS attacks
+  // so we should avoid using it unless absolutely necessary
+  // we can use it in combination with @HostListener and @HostBinding
+  private el = inject(ElementRef);
+  onClick() {
+     console.log(this.el); 
+  }
+
+  //#endregion
+  //===================================
+  
+
+
   label = input<string>();
 }
