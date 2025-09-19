@@ -1,4 +1,4 @@
-import { Component, input, ViewEncapsulation } from '@angular/core';
+import { Component, HostBinding, HostListener, input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -8,11 +8,46 @@ import { Component, input, ViewEncapsulation } from '@angular/core';
   //======= default attibute and value to give component =======
   host : {
     class:"control",
+    '(click)': 'onClick()'
   },
-  
   //======= remove scoped css global =======
   encapsulation: ViewEncapsulation.None, // ViewEncapsulation.None
 })
 export class ControlComponent {
+  //===================================
+  //#region 
+  // Note ======= Host Binding =======
+  // we have 2 ways to bind host element property
+  // 1. @HostBinding('class.control') hostClass = '';
+  // @HostBinding('class') className = 'control';
+  // 2. host : { class:"control" } in @Component decorator
+  // but mostly we use host: { class:"control" } in @Component decorator
+  // because it is more readable and easier to manage
+  // if we have multiple classes to bind
+  //#endregion
+  //===================================
+  
+  //===================================
+  //#region 
+  // Note ======= Host Listening @HostListener =======
+  // we have 2 ways to listen host element event
+  // 1. @HostListener('click') onClick() { console.log('clicked'); }
+  // @HostListener('click') onClick() { console.log('clicked'); }
+  // @HostListener('mouseover') onMouseOver() { console.log('mouse over'); }
+  // @HostListener('mouseout') onMouseOut() { console.log('mouse out'); }
+  
+  
+  // 2. host : { '(click)': 'onClick()' } in @Component decorator
+  onClick() {
+     console.log('clicked'); 
+  }
+  // onMouseOver() { console.log('mouse over'); }
+  // onMouseOut() { console.log('mouse out'); }
+  // mostly we use host : { '(click)': 'onClick()' } in @Component decorator
+  // because it is more readable and easier to manage
+  // if we have multiple events to listen
+  //#endregion
+  //===================================
+  
   label = input<string>();
 }

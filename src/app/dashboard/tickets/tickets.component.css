@@ -1,6 +1,11 @@
+:host {
+  display: block;
+  width: 15rem;
+}
+
 
 /* #tickets { */
-:host {
+/* :host {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -27,16 +32,11 @@
   font-size: 1.1rem;
   color: #38343c;
 }
-
-#new-ticket {
-  width: 15rem;
-}
-
 @media (min-width: 768px) {
   :host {
     flex-direction: row;
   }
-}
+} */
 /* 
 #new-ticket label {
   display: block;
