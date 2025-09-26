@@ -18,7 +18,9 @@ import {
   imports: [],
   templateUrl: './lifecycle.component.html',
   styleUrl: './lifecycle.component.css',
+
 })
+
 export class LifecycleComponent
   implements
     OnInit,
