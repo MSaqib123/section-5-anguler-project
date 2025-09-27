@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-server-status',
@@ -11,9 +11,13 @@ import { Component, OnInit } from '@angular/core';
 // becuase Angular does not know that we are using the ngOnInit lifecycle hook
 // so now when we type  small case ngOnInit to ngoninit it will give error
 // so to avoid this error we have to implement the OnInit interface and to implement correct structure
-export class ServerStatusComponent implements OnInit {
+export class ServerStatusComponent implements OnInit,OnDestroy {
   // typo type or enum type
   currentStatus:'online'|'offline'|'unknown' = 'online';
+
+  // Cannot find namespace 'NodeJS'
+  //private interval? : NodeJS.Timeout
+  private interval? : ReturnType<typeof setInterval>;
 
   constructor () {
     // setInterval(() => {
@@ -31,6 +35,7 @@ export class ServerStatusComponent implements OnInit {
     //   }
     // }, 2000);
   }
+ 
 
   //============
   //  Component Lifecycle or Lifecycle Hooks
@@ -47,7 +52,7 @@ export class ServerStatusComponent implements OnInit {
   // It is a good place to put initialization logic for the component.
   //============
   ngOnInit(){
-    setInterval(() => {
+    this.interval = setInterval(() => {
       const rnd = Math.random();
 
       if(rnd < 0.5) {
@@ -61,5 +66,8 @@ export class ServerStatusComponent implements OnInit {
         // console.log('Unknown');
       }
     }, 2000);
+  }
+  ngOnDestroy(){
+    clearInterval(this.interval);
   }
 }
