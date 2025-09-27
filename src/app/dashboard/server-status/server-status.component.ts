@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-server-status',
@@ -11,13 +11,21 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 // becuase Angular does not know that we are using the ngOnInit lifecycle hook
 // so now when we type  small case ngOnInit to ngoninit it will give error
 // so to avoid this error we have to implement the OnInit interface and to implement correct structure
-export class ServerStatusComponent implements OnInit,OnDestroy {
+
+// export class ServerStatusComponent implements OnInit,OnDestroy {
+export class ServerStatusComponent implements OnInit {
   // typo type or enum type
   currentStatus:'online'|'offline'|'unknown' = 'online';
 
+  //============= 1st way =============
   // Cannot find namespace 'NodeJS'
   //private interval? : NodeJS.Timeout
-  private interval? : ReturnType<typeof setInterval>;
+  // private interval? : ReturnType<typeof setInterval>;
+
+  //============ 2nd way =============
+  // DestroyRef is a service that provides a way to register cleanup callbacks that are called when the component is destroyed.
+  // private destroyRef: DestroyRef
+  private destroyRef = inject(DestroyRef);
 
   constructor () {
     // setInterval(() => {
@@ -52,7 +60,8 @@ export class ServerStatusComponent implements OnInit,OnDestroy {
   // It is a good place to put initialization logic for the component.
   //============
   ngOnInit(){
-    this.interval = setInterval(() => {
+    // this.interval = setInterval(() => {
+    const interval = setInterval(() => {
       const rnd = Math.random();
 
       if(rnd < 0.5) {
@@ -66,8 +75,17 @@ export class ServerStatusComponent implements OnInit,OnDestroy {
         // console.log('Unknown');
       }
     }, 2000);
+
+    this.destroyRef.onDestroy(() => {
+      clearInterval(interval);
+    })
   }
-  ngOnDestroy(){
-    clearInterval(this.interval);
-  }
+
+  //============ 1. older way of disposing the component =============
+  // ngOnDestroy is a lifecycle hook that is called just before Angular destroys the directive/component.
+  // It is a good place to clean up resources, unsubscribe from observables, and detach event handlers to avoid memory leaks.
+  //============
+  // ngOnDestroy(){
+  //   clearInterval(this.interval);
+  // }
 }
