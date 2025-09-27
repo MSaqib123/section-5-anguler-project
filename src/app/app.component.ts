@@ -4,11 +4,12 @@ import { ServerStatusComponent } from "./dashboard/server-status/server-status.c
 import { StrafficComponent } from "./dashboard/straffic/straffic.component";
 import { TicketsComponent } from "./dashboard/tickets/tickets.component";
 import { DashboardItemComponent } from "./dashboard/dashboard-item/dashboard-item.component";
+import { LifecycleComponent } from "./lifecycle/lifecycle.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeaderComponent, ServerStatusComponent, StrafficComponent, TicketsComponent, DashboardItemComponent],
+  imports: [HeaderComponent, ServerStatusComponent, StrafficComponent, TicketsComponent, DashboardItemComponent, LifecycleComponent],
   templateUrl: './app.component.html',
 })
 export class AppComponent {
@@ -44,4 +45,18 @@ export class AppComponent {
   // ];
   // maxTraffic = Math.max(...this.dummyTrafficData.map((data) => data.value));
   // currentStatus = 'online';
+
+  //===================================
+  // 30. Component Lifecycle - A Deep Dive
+  //===================================
+  lifecycleComponentIsVisible = false;
+  lifecycleInputText = 'Some Random Number: ' + Math.random() * 100;
+
+  onToggleLifecycleComponentVisibility() {
+    this.lifecycleComponentIsVisible = !this.lifecycleComponentIsVisible;
+  }
+
+  onChangeLifecycleInputText() {
+    this.lifecycleInputText = 'Some Random Number: ' + Math.random() * 100;
+  }
 }

@@ -52,13 +52,13 @@ export class ServerStatusComponent implements OnInit {
 
       if(rnd < 0.5) {
         this.currentStatus = 'online';
-        console.log('Online');
+        // console.log('Online');
       } else if (rnd < 0.9) {
         this.currentStatus = 'offline';
-        console.log('Offline');
+        // console.log('Offline');
       } else {
         this.currentStatus = 'unknown';
-        console.log('Unknown');
+        // console.log('Unknown');
       }
     }, 2000);
   }
