@@ -10,11 +10,16 @@ import { ControlComponent } from "../../../shared/control/control.component";
   styleUrl: './new-ticket.component.css'
 })
 export class NewTicketComponent {
-  onSubmit(titleInput:HTMLInputElement,textArea:HTMLTextAreaElement) {  
-    console.dir(titleInput);
-    console.dir(textArea);
 
-    console.log('Form submitted', titleInput.value, textArea.value);
+  // onSubmit(titleInput:HTMLInputElement,textArea:HTMLTextAreaElement) {  
+  onSubmit(titleInput:string,textArea:string) {  
+    // console.log('Form submitted', titleInput.value, textArea.value);
+    // console.dir(titleInput);
+    // console.dir(textArea);
+
+    console.log(titleInput);
+    console.log(textArea);
+
   } 
 
 
