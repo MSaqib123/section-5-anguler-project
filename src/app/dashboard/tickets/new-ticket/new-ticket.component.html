@@ -1,6 +1,8 @@
 <!-- <form id="new-ticket" (ngSubmit)="onSubmit(titleInput,textArea)"> -->
 <form id="new-ticket" (ngSubmit)="onSubmit(titleInput.value,textArea.value)">
   <app-control [label]="'Title'">
+    <!-- Template Variable -->
+    <!-- #titleInput -->
     <input class="" name="title" id="title" #titleInput/>
   </app-control>
   <app-control [label]="'Request'">
@@ -47,7 +49,9 @@
 
 
       <!-- ================= ngProjectAs -->
-      <button appButton>
+      <!--ButtonComponent vs HTMLButtonelement -->
+      <button appButton #btn>
+      <!-- <button #btn> -->
         Submit
         <span ngProjectAs="icon">⌲</span>
       </button>
