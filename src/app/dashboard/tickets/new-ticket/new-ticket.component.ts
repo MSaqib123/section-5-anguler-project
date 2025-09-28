@@ -1,4 +1,4 @@
-import { Component, ElementRef, input, ViewChild } from '@angular/core';
+import { Component, ElementRef, input, viewChild, ViewChild, ViewChildren } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from "../../../shared/button/button.component";
 import { ControlComponent } from "../../../shared/control/control.component";
@@ -10,12 +10,24 @@ import { ControlComponent } from "../../../shared/control/control.component";
   styleUrl: './new-ticket.component.css'
 })
 export class NewTicketComponent {
+
+  //===================================
+  //================= Angular Decorator @ViewChild / @ViewChildren ===================
+  //===================================
   //======= Direct Compoennt of button =========
   // @ViewChild(ButtonComponent) submitButton: ButtonComponent;
 
   // ======= Direct Template Variables =========
-  @ViewChild('form') form?: ElementRef<HTMLFormElement>;
+  // @ViewChild('form') form?: ElementRef<HTMLFormElement>;
 
+  // ======= Multiple Element Select =========
+  // @ViewChildren('btn') buttons?: ElementRef<HTMLButtonElement>;
+  // @ViewChildren(ButtonComponent) buttons?: ElementRef<HTMLButtonElement>;
+
+  //===================================
+  //================= signals ===================
+  //===================================
+  private form = viewChild<ElementRef<HTMLFormElement>>('form');
 
   // onSubmit(titleInput:HTMLInputElement,textArea:HTMLTextAreaElement) {  
   // onSubmit(titleInput:string,textArea:string,form:HTMLFormElement) {  
@@ -28,7 +40,9 @@ export class NewTicketComponent {
     console.log(textArea);
     // form.reset();
 
-    this.form?.nativeElement.reset();
+    //========= Decorator ==============
+    // this.form?.nativeElement.reset();
+    this.form()?.nativeElement.reset();
 
   } 
 
