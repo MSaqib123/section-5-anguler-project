@@ -1,5 +1,6 @@
 <!-- <form id="new-ticket" (ngSubmit)="onSubmit(titleInput,textArea)"> -->
-<form id="new-ticket" (ngSubmit)="onSubmit(titleInput.value,textArea.value,form)" #form>
+<!-- <form id="new-ticket" (ngSubmit)="onSubmit(titleInput.value,textArea.value,form)" #form> -->
+<form id="new-ticket" (ngSubmit)="onSubmit(titleInput.value,textArea.value)" #form>
   <app-control [label]="'Title'">
     <!-- Template Variable -->
     <!-- #titleInput -->
