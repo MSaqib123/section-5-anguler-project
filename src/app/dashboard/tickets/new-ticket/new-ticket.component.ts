@@ -12,4 +12,5 @@ export class NewTicketComponent {
   onSubmit() {  
     console.log('Form submitted');
   } 
+  
 }
