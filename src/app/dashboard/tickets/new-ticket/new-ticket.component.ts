@@ -27,7 +27,7 @@ export class NewTicketComponent {
   //===================================
   //================= signals ===================
   //===================================
-  private form = viewChild<ElementRef<HTMLFormElement>>('form');
+  private form = viewChild.required<ElementRef<HTMLFormElement>>('form');
 
   // onSubmit(titleInput:HTMLInputElement,textArea:HTMLTextAreaElement) {  
   // onSubmit(titleInput:string,textArea:string,form:HTMLFormElement) {  
@@ -42,7 +42,7 @@ export class NewTicketComponent {
 
     //========= Decorator ==============
     // this.form?.nativeElement.reset();
-    this.form()?.nativeElement.reset();
+    this.form().nativeElement.reset();
 
   } 
 
