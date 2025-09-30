@@ -43,10 +43,6 @@ export class NewTicketComponent {
     //========= Decorator ==============
     // this.form?.nativeElement.reset();
     this.form().nativeElement.reset();
-
-
-    
-
   } 
 
 
