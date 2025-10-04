@@ -49,9 +49,20 @@ export class ServerStatusComponent implements OnInit {
 
 
     //============= Signals Effect =============
-    effect(() => {
-      console.log(this.currentStatus());
-    });
+    // effect(() => {
+    //   console.log(this.currentStatus());
+    // });
+
+    //============= Signals Effect Clean up =============
+    // effect((onCleanup) => {
+    //   const tasks = getTasks();
+    //   const timer = setTimeout(() => {
+    //     console.log(`Current number of tasks: ${tasks().length}`);
+    //   }, 1000);
+    //   onCleanup(() => {
+    //     clearTimeout(timer);
+    //   });
+    // });
   }
  
 
