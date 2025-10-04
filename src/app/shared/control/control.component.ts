@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostBinding, HostListener, inject, input, ViewEncapsulation } from '@angular/core';
+import { Component, contentChild, ContentChild, ElementRef, HostBinding, HostListener, inject, input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -58,8 +58,26 @@ export class ControlComponent {
   // so we should avoid using it unless absolutely necessary
   // we can use it in combination with @HostListener and @HostBinding
   private el = inject(ElementRef);
+
+  //=============== content child ===============
+  // we can use @ContentChild to access the child element projected into the component
+  // we can use it to access the child element properties and methods
+  //=== Decorator Way ===
+  //@ContentChild('input') private control?: ElementRef<HTMLInputElement | HTMLTextAreaElement>
+
+  //=== signal Way ===
+  private control = contentChild<ElementRef<HTMLInputElement | HTMLTextAreaElement>>('input');
+
+  // onClick method to log the host element
   onClick() {
      console.log(this.el); 
+
+     //=== Decorator Way ===
+     //console.log(this.control);
+
+     //=== Signal Way ===
+     console.log(this.control());
+
   }
 
   //#endregion
