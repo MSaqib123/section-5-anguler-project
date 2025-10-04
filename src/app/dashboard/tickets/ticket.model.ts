@@ -4,3 +4,6 @@ export interface Ticket {
   request: string;
   status: 'open' | 'in-progress' | 'closed';
 }
+
+
+
