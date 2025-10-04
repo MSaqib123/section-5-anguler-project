@@ -48,7 +48,7 @@ export class ServerStatusComponent implements OnInit {
     // }, 2000);
 
 
-    //============= Signals =============
+    //============= Signals Effect =============
     effect(() => {
       console.log(this.currentStatus());
     });
