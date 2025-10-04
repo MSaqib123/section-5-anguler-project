@@ -1,4 +1,4 @@
-import { Component, contentChild, ContentChild, ElementRef, HostBinding, HostListener, inject, input, ViewEncapsulation } from '@angular/core';
+import { AfterContentInit, Component, contentChild, ContentChild, ElementRef, HostBinding, HostListener, inject, input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -13,7 +13,7 @@ import { Component, contentChild, ContentChild, ElementRef, HostBinding, HostLis
   //======= remove scoped css global =======
   encapsulation: ViewEncapsulation.None, // ViewEncapsulation.None
 })
-export class ControlComponent {
+export class ControlComponent implements AfterContentInit{
   //===================================
   //#region 
   // Note ======= Host Binding =======
@@ -84,6 +84,10 @@ export class ControlComponent {
   //===================================
   
 
+  @ContentChild('input') private control1?: ElementRef<HTMLInputElement | HTMLTextAreaElement>
+  ngAfterContentInit(): void {
+    console.log(this.control1?.nativeElement);
+  }
 
   label = input<string>();
 }

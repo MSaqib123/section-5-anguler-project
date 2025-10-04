@@ -1,4 +1,4 @@
-import { Component, ElementRef, input, viewChild, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, input, OnInit, viewChild, ViewChild, ViewChildren } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from "../../../shared/button/button.component";
 import { ControlComponent } from "../../../shared/control/control.component";
@@ -9,7 +9,7 @@ import { ControlComponent } from "../../../shared/control/control.component";
   templateUrl: './new-ticket.component.html',
   styleUrl: './new-ticket.component.css'
 })
-export class NewTicketComponent {
+export class NewTicketComponent implements OnInit, AfterViewInit {
 
   //===================================
   //================= Angular Decorator @ViewChild / @ViewChildren ===================
@@ -28,6 +28,17 @@ export class NewTicketComponent {
   //================= signals ===================
   //===================================
   private form = viewChild.required<ElementRef<HTMLFormElement>>('form');
+  @ViewChild('form') formforHuck?: ElementRef<HTMLFormElement>;
+
+  
+  ngOnInit(): void {
+    console.log();
+    console.log(this.formforHuck?.nativeElement);
+  }
+  ngAfterViewInit(): void {
+    console.log('After ViewInit called');
+    console.log(this.formforHuck?.nativeElement);
+  }
 
   // onSubmit(titleInput:HTMLInputElement,textArea:HTMLTextAreaElement) {  
   // onSubmit(titleInput:string,textArea:string,form:HTMLFormElement) {  
