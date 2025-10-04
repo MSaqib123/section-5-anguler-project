@@ -1,7 +1,20 @@
-
+<div>
+  <ul>
+    @for (item of tickets; track $index) {
+      <li>
+        <app-ticket/> - {{$first}} - {{$last}} - - {{$count}}
+      </li>
+    }
+    @empty {
+      <p>No tickets found.</p>
+    }
+  </ul>
+</div>
 <!-- <div id="status" class="w-100"> -->
-  <p>New ticket created!</p>
-  <app-new-ticket (add)="onAddTicket($event)"></app-new-ticket>
+  <div id="new-ticket">
+    <p>New ticket created!</p>
+    <app-new-ticket (add)="onAddTicket($event)"></app-new-ticket>
+  </div>
 <!-- </div> -->
 
 
