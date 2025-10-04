@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, contentChild, ContentChild, ElementRef, HostBinding, HostListener, inject, input, ViewEncapsulation } from '@angular/core';
+import { AfterContentInit, afterNextRender, afterRender, Component, contentChild, ContentChild, ElementRef, HostBinding, HostListener, inject, input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -87,6 +87,23 @@ export class ControlComponent implements AfterContentInit{
   @ContentChild('input') private control1?: ElementRef<HTMLInputElement | HTMLTextAreaElement>
   ngAfterContentInit(): void {
     console.log(this.control1?.nativeElement);
+  }
+
+  /**
+   *
+   */
+  constructor() {
+    // for one time change after component render
+    // we can use afterRender to run a function after the component is rendered
+    afterRender(() => {
+      console.log("after render");
+    })
+
+    // on every change in the component
+    // we can use afterNextRender to run a function after the next render
+    afterNextRender(() => {
+      console.log("After Render next");
+    })  
   }
 
   label = input<string>();
