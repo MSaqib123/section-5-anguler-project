@@ -42,7 +42,7 @@
 
 
 <!-- #region 3. Style Binding -->
-  <div [class]="{
+  <!-- <div [class]="{
     status:true,
     'status-online': currentStatus == 'online',
     'status-offline': currentStatus == 'offline',
@@ -73,9 +73,46 @@
   <p>Server status is unknown</p>
   <p>Fetching server status failed.</p>
   }
-</div>
+</div> -->
+
 <!-- #endregion -->
 
+
+
+<!-- #region 4. by signals-->
+  <div [class]="{
+    status:true,
+    'status-online': currentStatus() == 'online',
+    'status-offline': currentStatus() == 'offline',
+    'status-unknown': currentStatus() == 'unknown'
+  }"
+  
+  
+  [style]="{
+    padding: '1rem',
+    border: '1px solid black',
+    'border-radius': '0.5rem',
+    'background-color': currentStatus() == 'online' ? 'lightgreen':
+    currentStatus() == 'offline' ? 'lightcoral' : 'lightblue',
+  }"
+
+  [style.backgroundColor]="
+      currentStatus() == 'online' ? 'lightgreen':
+      currentStatus() == 'offline' ? 'lightcoral' : 'lightblue'
+    "
+  >
+  @if (currentStatus() === 'online') {
+  <p>Servers are online</p>
+  <p>All systems are operational.</p>
+  } @else if (currentStatus() === 'offline') {
+  <p>Servers are offline</p>
+  <p>Functionality should be restored soon.</p>
+  } @else {
+  <p>Server status is unknown</p>
+  <p>Fetching server status failed.</p>
+  }
+</div>
+<!-- #endregion -->
 
 <!-- </div> -->
 

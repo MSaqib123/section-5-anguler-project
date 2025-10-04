@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, DestroyRef, effect, inject, OnDestroy, OnInit, signal } from '@angular/core';
 
 @Component({
   selector: 'app-server-status',
@@ -14,8 +14,12 @@ import { Component, DestroyRef, inject, OnDestroy, OnInit } from '@angular/core'
 
 // export class ServerStatusComponent implements OnInit,OnDestroy {
 export class ServerStatusComponent implements OnInit {
+
   // typo type or enum type
-  currentStatus:'online'|'offline'|'unknown' = 'online';
+  //currentStatus:'online'|'offline'|'unknown' = 'online';
+
+  //==== Signals ====
+  currentStatus = signal<'online'|'offline'|'unknown'>('online');
 
   //============= 1st way =============
   // Cannot find namespace 'NodeJS'
@@ -42,6 +46,12 @@ export class ServerStatusComponent implements OnInit {
     //     console.log('Unknown');
     //   }
     // }, 2000);
+
+
+    //============= Signals =============
+    effect(() => {
+      console.log(this.currentStatus());
+    });
   }
  
 
@@ -59,19 +69,49 @@ export class ServerStatusComponent implements OnInit {
   // ngOnInit is a lifecycle hook that is called after Angular has initialized all data-bound properties of a directive.
   // It is a good place to put initialization logic for the component.
   //============
+  // ngOnInit(){
+  //   // this.interval = setInterval(() => {
+  //   const interval = setInterval(() => {
+  //     const rnd = Math.random();
+
+  //     if(rnd < 0.5) {
+  //       this.currentStatus = 'online';
+  //       // console.log('Online');
+  //     } else if (rnd < 0.9) {
+  //       this.currentStatus = 'offline';
+  //       // console.log('Offline');
+  //     } else {
+  //       this.currentStatus = 'unknown';
+  //       // console.log('Unknown');
+  //     }
+  //   }, 2000);
+
+  //   this.destroyRef.onDestroy(() => {
+  //     clearInterval(interval);
+  //   })
+  // }
+
+
+
+  //============
+  // Singlal Working
+  //============
   ngOnInit(){
     // this.interval = setInterval(() => {
     const interval = setInterval(() => {
       const rnd = Math.random();
 
       if(rnd < 0.5) {
-        this.currentStatus = 'online';
+        // this.currentStatus = 'online';
+        this.currentStatus.set('online');
         // console.log('Online');
       } else if (rnd < 0.9) {
-        this.currentStatus = 'offline';
+        // this.currentStatus = 'offline';
+        this.currentStatus.set('offline');
         // console.log('Offline');
       } else {
-        this.currentStatus = 'unknown';
+        // this.currentStatus = 'unknown';
+        this.currentStatus.set('unknown');
         // console.log('Unknown');
       }
     }, 2000);
@@ -80,6 +120,9 @@ export class ServerStatusComponent implements OnInit {
       clearInterval(interval);
     })
   }
+
+
+
 
   //============ 1. older way of disposing the component =============
   // ngOnDestroy is a lifecycle hook that is called just before Angular destroys the directive/component.
