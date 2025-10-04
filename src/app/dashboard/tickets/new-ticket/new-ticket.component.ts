@@ -42,27 +42,42 @@ export class NewTicketComponent implements OnInit, AfterViewInit {
     console.log(this.formforHuck?.nativeElement);
   }
 
+
+  //=========== NgModel 2 way binding ============
+  titleInput='';
+  textArea='';
+
   // onSubmit(titleInput:HTMLInputElement,textArea:HTMLTextAreaElement) {  
   // onSubmit(titleInput:string,textArea:string,form:HTMLFormElement) {  
-  onSubmit(titleInput:string,textArea:string) {  
+  // onSubmit(titleInput:string,textArea:string) {  
+  onSubmit() {  
     // console.log('Form submitted', titleInput.value, textArea.value);
     // console.dir(titleInput);
     // console.dir(textArea);
 
-    console.log(titleInput);
-    console.log(textArea);
+    // console.log(titleInput);
+    // console.log(textArea);
     // form.reset();
 
     //========= Decorator ==============
     // this.form?.nativeElement.reset();
 
     //========= Signals ==============
-    this.form().nativeElement.reset();
+    //this.form().nativeElement.reset();
 
     //exited
 
     //========
-    this.add.emit({title:titleInput,text:textArea});
+    //this.add.emit({title:titleInput,text:textArea});
+
+    this.add.emit({
+      title:this.titleInput,
+      text:this.textArea
+    })
+
+    this.titleInput = '';
+    this.textArea = '';
+    
   } 
 
 
