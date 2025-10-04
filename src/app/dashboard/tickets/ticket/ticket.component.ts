@@ -12,6 +12,12 @@ export class TicketComponent {
   close=output();
   detailsVisible = signal(false);
 
+  //============ Some notes for  class=50 ==============
+  // input , output has some configurations
+  // data = input.required<Ticket>({alias:'ticketData'});
+  // close = output<{id:string}>({alias:'onClose'});
+
+  
   toggleDetails() {
     //this.detailsVisible.set(!this.detailsVisible());
     this.detailsVisible.update(wasVisible => !wasVisible);
