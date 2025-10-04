@@ -1,4 +1,4 @@
-
+<!-- 
 <app-header/>
 
 <main>
@@ -14,7 +14,7 @@
 
     <app-dashboard-item [image]="{src:'list.png',alt:'A list of items'}" [title]="'Support Tickets'">
       <app-tickets/>
-    </app-dashboard-item>
+    </app-dashboard-item> -->
 
     <!-- <div class="dashboard-item">
       <app-server-status/>
@@ -30,14 +30,14 @@
  -->
 
     
-  </div>
-</main>
+  <!-- </div>
+</main> -->
 
 
 
 
 
-
+<!-- 
 <div id="buttons">
   <button (click)="onToggleLifecycleComponentVisibility()">
     Toggle Lifecycle Component Visibility
@@ -49,4 +49,20 @@
 
 @if (lifecycleComponentIsVisible) {
   <app-lifecycle [text]="lifecycleInputText" />
-}
+} -->
+
+
+
+
+<div id="inputs">
+  <p>
+    <label>Width</label>
+    <input type="number" step="1.0" [(ngModel)]="rectSize.width" />
+  </p>
+  <p>
+    <label>Height</label>
+    <input type="number" step="1.0" [(ngModel)]="rectSize.height" />
+  </p>
+</div>
+<!-- <app-rect [size]="rectSize" /> -->
+<app-rect [(size)]="rectSize" />
