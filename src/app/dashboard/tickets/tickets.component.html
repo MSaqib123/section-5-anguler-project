@@ -2,7 +2,7 @@
   <ul>
     @for (item of tickets; track $index) {
       <li>
-        <app-ticket [data]="item " /> - {{$first}} - {{$last}} - - {{$count}}
+        <app-ticket [data]="item " (close)="onCloseTicket(item.id)" /> - {{$first}} - {{$last}} - - {{$count}}
       </li>
     }
     @empty {
